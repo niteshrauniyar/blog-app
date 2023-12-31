@@ -29,27 +29,27 @@ async login({email,password}) {
       return await this.account.createEmailSession(email,password);
 
     } catch (error) {
-        throw error
+        throw error;
     }
 }
 
 async getCurrentUser() {
     try {
-        await this.account.get();
+        return await this.account.get();
 
 
     } catch (error) {
-        throw error
+        console.log("Appwrite serive :: getCurrentUser :: error", error);
     }
     return null;
 }
 
-async logOut() {
+async logout() {
     try {
-        await this.account.deleteSessions()
+        await this.account.deleteSessions();
 
     } catch (error) {
-        throw error
+        console.log("Appwrite serive :: logout :: error", error);
     }
 }
 }

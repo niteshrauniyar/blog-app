@@ -22,7 +22,8 @@ async createPost({
         return await this.databases.createDocument(
             conf.appWriteDatabaseId,
             conf.appWriteCollectionId,
-            slug, {
+            slug, 
+            {
                 title,
                 content,
                 featuredImage,
@@ -34,7 +35,7 @@ async createPost({
 
 
     } catch (error) {
-        throw error;
+        console.log("Appwrite serive :: createPost :: error", error);
     }
 }
 
@@ -46,7 +47,7 @@ try {
         conf.appWriteDatabaseId,
         conf.appWriteCollectionId,
         slug,
-    )
+    
     {
         title,
         content,
@@ -55,16 +56,16 @@ try {
 
     }
 
-
+    )
 
 } catch (error) {
-    throw error
+    console.log("Appwrite serive :: updatePost :: error", error);
 }
 }
 
-async deletePost({
+async deletePost(slug){
     slug
-}){
+
     try {
          await this.databases.deleteDocument(
             conf.appWriteDatabaseId,
@@ -88,8 +89,8 @@ async getPost(slug){
 
 
     } catch (error) {
-        throw error;
-        return false
+        console.log("Appwrite serive :: getPost :: error", error);
+            return false
     }
 }
 
@@ -104,7 +105,7 @@ return await this.databases.listDocuments(
 
         
     } catch (error) {
-        throw error
+        console.log("Appwrite serive :: getPosts :: error", error);
         return false
     }
 }
@@ -118,7 +119,8 @@ async uploadFile(file) {
             file
         )
     } catch (error) {
-        throw error
+        console.log("Appwrite serive :: uploadFile :: error", error);
+        return false
     }
 }
 

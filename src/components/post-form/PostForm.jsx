@@ -18,7 +18,7 @@ export default function PostForm({post}) {
     const userData = useSelector((state) => state.auth.userData );
   const submit = async (data) => {
     if (post) {
-        const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null
+        const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
         if (file) {
     appwriteService.deleteFile(post.featuredImage);
         }
@@ -62,7 +62,7 @@ navigate(`/post/${dbPost.$id}`);
 
 
 return "";
-  }, [])
+  }, []);
 
   React.useEffect( () => {
     const subscription = watch((value , {name}) => {
@@ -128,5 +128,5 @@ setValue("slug" , slugTransform(value.title), {shouldValidate: true})
         </Button>
     </div>
 </form>
-  )
+  );
 }
