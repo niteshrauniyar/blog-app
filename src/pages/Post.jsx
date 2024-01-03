@@ -34,7 +34,7 @@ export default function Post() {
     }
 
     return post ?(
-        <div className="py-8">
+        <div className="py-8 bg-gray-800">
         <Container>
             <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2 ">
             <img 
@@ -57,12 +57,12 @@ export default function Post() {
                 
             </div>
 <div className="w-full mb-6">
-<h1 className="text-2xl font-bold">
+<h1 className="text-2xl font-bold text-white">
 {post.title}
 </h1>
 </div>
-<div className="browser-css">
-{post.Content && typeof post.Content === 'string' ? parse(post.Content) : null}
+<div className="browser-css text-white">
+{post.content && typeof post.content === 'string' ? parse(post.content) : null}
 
 </div>
 

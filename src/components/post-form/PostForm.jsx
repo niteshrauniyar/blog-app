@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react'
+import React, {useCallback, useState} from 'react'
 import {useForm} from "react-hook-form"
 import {Button, Input, RTE, Select}  from "../index"
 import appwriteService from "../../appwrite/config"
@@ -15,8 +15,10 @@ export default function PostForm({post}) {
         },
     });
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false);
     const userData = useSelector((state) => state.auth.userData );
   const submit = async (data) => {
+    setIsLoading(true);
     if (post) {
         const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
         if (file) {
@@ -38,7 +40,7 @@ navigate(`/post/${dbPost.$id}`);
 const fileId = file.$id;
 data.featuredImage = fileId;
 const dbPost = await appwriteService.createPost({...data, userId: userData.$id});
-
+setIsLoading(false);
 if (dbPost) {
 navigate(`/post/${dbPost.$id}`);
 }
@@ -49,7 +51,9 @@ navigate(`/post/${dbPost.$id}`);
 
 
     }
-  };
+  
+    
+};
 
 
   const slugTransform = useCallback((value) => {
@@ -127,6 +131,7 @@ setValue("slug" , slugTransform(value.title), {shouldValidate: true})
             {post ? "Update" : "Submit"}
         </Button>
     </div>
-</form>
+    {isLoading && <p>Loading...</p>}
+    </form>
   );
 }
