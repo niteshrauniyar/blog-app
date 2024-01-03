@@ -13,13 +13,16 @@ useEffect(() => {
 },[])
 if (posts.length === 0 ) {
     return (
-        <div className='w-full py-8 mt-4 text-center'>
+        <div className='w-full py-8 mt-4 text-center '>
         <Container>
             <div className='flex flex-wrap'>
             <div className='p-2 w-full'>
-            <h1 className='text-2xl text-white font-bold hover:text-white'>
-            Login to read posts
+            <h1 className='text-2xl text-white font-bold hover:text-white mb-5'>
+            Login/Signup to read posts
             </h1>
+            <div className='flex flex-1 justify-center align-middle'>
+                <div class="loader"></div>
+            </div>
 
             </div>
 
